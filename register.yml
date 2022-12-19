@@ -1,0 +1,12 @@
+#To get the output results
+---
+- hosts: localhost
+  tasks:
+   - name: creating users
+     user: name={{item}} state=present
+     with_items:
+        - test
+        - devops
+        - suresh
+     register: result
+   - debug: var=result
