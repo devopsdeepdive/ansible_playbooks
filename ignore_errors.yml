@@ -1,0 +1,13 @@
+#to ignore particular error task
+---
+- hosts: localhost
+  tasks:
+   - name: Install apache2
+     apt: name=apache_new2 state=present
+     ignore_errors: yes
+   - name: copy the index file
+     copy: src=index.html dest=/var/www/html/index.html
+   - name: check apache2 status
+     service: name=apache2 state=status
+     register: result
+   - debug: var=result
