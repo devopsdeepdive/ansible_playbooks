@@ -1,0 +1,10 @@
+#creates example to get the idempotent
+---
+- hosts: localhost
+  tasks:
+   - name: Install apache2
+     command: apt install -y apache2 creates=/home/ubuntu/demo
+   - name: copy the index file
+     copy: src=index.html dest=/var/www/html/index.html
+   - name: check apache2 status
+     service: name=apache2 state=started
