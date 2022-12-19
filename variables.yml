@@ -1,0 +1,15 @@
+#Variable playbook
+---
+- hosts: all
+  vars:
+       pkg: apache2
+       pkg1: zip
+  tasks:
+   - name: Install apache2 
+     apt: name={{pkg}} state=present
+   - name: Install zip
+     apt:  name={{pkg1}} state=present
+   - name: copy the index file
+     copy: src=index.html dest=/var/www/html/index.html
+   - name: check apache2 start
+     service: name={{pkg}} state=started   
