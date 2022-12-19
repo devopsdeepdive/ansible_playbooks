@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  tasks:
+   - name: Install apache2
+     apt: name=apache2 state=present
+   - name: copy the index file
+     copy: src=index.html dest=/var/www/html/index.html
+     notify: start the webserver
+  handlers:
+   - name: start the webserver
+     service: name=apache2 state=started
